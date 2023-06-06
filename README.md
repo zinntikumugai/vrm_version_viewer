@@ -4,8 +4,10 @@ VRMとUniVRMのバージョン見るやーつ
 
 ## 使い方
 
+[ここからダウンロード](https://github.com/zinntikumugai/vrm_version_viewer/releases/latest)
+
 ```
-./vrm_version_viewer-x_x_x-amd64.exe avater.vrm
+vrm_version_viewer.exe avater.vrm
 ```
 
 
