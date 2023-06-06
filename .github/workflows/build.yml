@@ -1,0 +1,39 @@
+on:
+  push:
+    tags:
+  
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      # setup
+      - uses: actions/checkout@v3
+
+      # GitHub Actions
+      - name: Run actionlint
+        shell: bash
+        run: |
+          set -ex
+          bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
+
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write 
+    steps:
+      # setup
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: src/go.mod
+          cache: true
+
+      # lint
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with: src

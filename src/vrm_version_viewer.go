@@ -67,8 +67,8 @@ type VRMJSONv1Meta struct {
 	OtherLicenseUrl                string          `json:"otherLicenseUrl"`
 }
 
+var version string
 var rVRMFilename *regexp.Regexp = regexp.MustCompile(`(?i)(.+).vrm`)
-
 const VRMv0ExtensionName = "VRM"
 const VRMv1ExtensionName = "VRMC_vrm"
 
@@ -92,7 +92,7 @@ func VRMv1Unmarshal(data []byte) (interface{}, error) {
 }
 
 func main() {
-	fmt.Println("VRM Version Viwer")
+	fmt.Printf("VRM Version Viwer %s\n", version)
 
 	if len(os.Args) != 2 {
 		fmt.Println("missing args")

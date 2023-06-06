@@ -1,0 +1,25 @@
+on:
+  push:
+    tags:
+
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write 
+    steps:
+      # setup
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: src/go.mod
+          cache: true
+
+      - uses: goreleaser/goreleaser-action@v4
+        with:
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
