@@ -16,6 +16,12 @@ jobs:
           bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
           ./actionlint -color
 
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: "src/go.mod"
+          cache: true
+
       # lint
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
